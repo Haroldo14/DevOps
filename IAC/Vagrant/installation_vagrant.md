@@ -9,7 +9,7 @@ Suivez les étapes d'installation :
 4️⃣![alt text](4-install_vagrant.png)
 
 Une fois installé, ouvrez un IDE dans le dossier de travail souhaité et exécutez la commande suivante pour initialiser Vagrant. Cela créera un fichier Vagrantfile dans le répertoire.
-vagrant init
+`vagrant init`
 
 ## CRÉATION D'UNE MACHINE VIRTUELLE
 Vous pouvez créer une VM de deux manières :
@@ -23,28 +23,28 @@ Configurez votre propre Vagrantfile pour définir la machine virtuelle selon vos
 COMMANDES ESSENTIELLES
 
 🔹 Démarrer une machine virtuelle inscrite dans le Vagrantfile
-vagrant up
+`vagrant up`
 
 🔹 Vérifier l’état des VM
-vagrant status
+`vagrant status`
 
 🔹 Arrêter une VM sans la supprimer
-vagrant halt
+`vagrant halt`
 
 🔹 Supprimer une VM définitivement
-vagrant destroy
+`vagrant destroy`
 
 🔹 Redémarrer une VM
-vagrant reload
+`vagrant reload`
 
 🔹 Redémarrer une VM en forçant l’approvisionnement (provisioning)
-vagrant reload --provision
+`vagrant reload --provision`
 
 🔹 Se connecter à une VM via SSH
-vagrant ssh [nom_VM]
+`vagrant ssh [nom_VM]`
 
 🔹 Lister les images (box) installées sur votre machine
-vagrant box list
+`vagrant box list`
 
 
 📌 D'autres commandes avancées sont disponibles dans la documentation officielle ou en effectuant des recherches plus approfondies.
