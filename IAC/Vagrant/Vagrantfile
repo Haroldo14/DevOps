@@ -1,0 +1,36 @@
+# VAGRANTFILE CREATION DE DEUX MACHINES MASTER ET DEUX WORKERS
+VAGRANTFILE_API_VERSION = "2" 
+  # Définition de la version de vagrant a utiliser soit 1 (version 1.x) ou 2 (versions 1.1 + a 2.x )
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  # Définition de l'image de base pour toutes les machines
+  config.vm.box = "ubuntu/focal64"   # Image Vagrant récupérable via Vagrant Cloud
+
+  # Boucle pour créer les nœuds Masters
+  (1..2).each do |i|
+    config.vm.define "master-#{i}" do |master|
+      master.vm.hostname = "master-#{i}" # Nom de la machine 
+      master.vm.network "private_network", type: "dhcp" # Configure un réseau privé en DHCP, modifiable selon vos besoins(statique, bridge ...).
+
+      # Ressources allouées 
+      master.vm.provider "virtualbox" do |vb|
+        vb.memory = "2048" # À adapter en fonction de vos ressources matérielles.
+        vb.cpus = 2
+      end
+    end
+  end
+
+  # Boucle pour créer les nœuds Workers
+  (1..2).each do |i|
+    config.vm.define "worker-#{i}" do |worker| 
+      worker.vm.hostname = "worker-#{i}"   # Nom de la machine
+      worker.vm.network "private_network", type: "dhcp"  # Même configuration réseau que les Masters.
+
+      # Ressources allouées
+      worker.vm.provider "virtualbox" do |vb|
+        vb.memory = "2048"
+        vb.cpus = 2
+      end
+    end
+  end
+end
