@@ -1,9 +1,13 @@
 # 1. Mise à jour du système
-`sudo apt update && sudo apt upgrade -y`
+```bash
+sudo apt update && sudo apt upgrade -y
+```
 
 # 2. Installation de Java 17
-`sudo apt install -y fontconfig openjdk-17-jre`
-`java -version`
+```bash
+sudo apt install -y fontconfig openjdk-17-jre
+java -version
+```
 
 # 3. Ajouter la clé et le dépôt Jenkins
 ```bash
@@ -13,15 +17,23 @@ sudo apt update```
 
 
 # 4. Installer Jenkins
-`sudo apt install -y jenkins`
+```bash
+sudo apt install -y jenkins
+```
 
 # 5. Activer et démarrer Jenkins
-`sudo systemctl enable --now jenkins`
-`sudo systemctl status jenkins`
+```bash
+sudo systemctl enable --now jenkins
+sudo systemctl status jenkins
+```
 
 # 6. Ouvrir le port 8080
-`sudo ufw allow 8080/tcp`
-`sudo ufw enable`
+```bash
+sudo ufw allow 8080/tcp
+sudo ufw enable
+```
 
 # 7. Récupérer le mot de passe admin Jenkins
-`sudo cat /var/lib/jenkins/secrets/initialAdminPassword`
+```bash
+sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+```
