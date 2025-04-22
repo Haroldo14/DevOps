@@ -212,4 +212,5 @@ Puis refaire les configurations l'etape "joindre noeud au cluster".
 ************************************** BY HaroldoDevOps237 *******************************************************
 ## Liens utiles
 Lien officiel documentation k8s: https://kubernetes.io/docs/home/
+
 Lien page officielle calico: https://docs.tigera.io/calico/latest/getting-started/kubernetes/self-managed-onprem/onpremises
