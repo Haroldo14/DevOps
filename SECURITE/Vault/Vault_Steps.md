@@ -23,7 +23,7 @@ helm repo update
 helm repo add hashicorp https://helm.releases.hashicorp.com
 helm repo update
 kubectl create ns vault-ns
-helm install vault hashicorp/vault --set "server.dev.enabled=true"  # Sans injector
+helm install vault hashicorp/vault --set "server.dev.enabled=true" -n vault-ns # Sans injector
 helm install vault hashicorp/vault --set "server.dev.enabled=true" --set "injector.enabled=true" -n vault-ns # Avec injector
 kubectl get pods -n vault-ns | grep -i vault
 ```
@@ -50,12 +50,13 @@ kubectl logs -n vault-ns vault-0 | grep 'Unseal Key'
 
 Déverrouillage de Vault :
 ```bash
-kubectl exec -it -n vault-ns vault-0 -- vault operator unseal <clé_1>
+kubectl exec -it -n vault-ns vault-0 -- vault operator unseal <clé_1> # commande d'utilisation de cle pour deverrouiller vault
 ```
 ![Utilisation clé](images/photo_2.png)
 
 ## Gestion des Secrets dans Vault
 ```bash
+# Tapez ces commandes etant dans le pod vault
 vault secrets enable kv  # Activation du moteur de secrets
 vault secrets list       # Verification des moteurs de secrets activer
 kubectl exec -it -n vault-ns vault-0 -- /bin/sh
@@ -128,6 +129,9 @@ kubectl exec -it -n vault-ns vault-client -- sh
 curl -s --request GET --header "X-Vault-Token: <TON_TOKEN_ROOT>" http://vault:8200/v1/kv/myapp | jq  # Dans mon cas TOKEN_ROOT = root
 ```
 ![Récupération Secret via Pod](images/Screenshot_2025-03-24_204841.png)
+
+Donne droit
+#cat /var/run/secrets/kubernetes.io/serviceaccount/token
 
 ## Ajout de Vault Agent Injector
 Ajoutons Vault Agent Injector pour injecter dynamiquement les secrets dans les Pods sans exposer directement les tokens.
