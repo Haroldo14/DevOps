@@ -16,6 +16,7 @@ sudo systemctl restart mysql
 sudo mysql -u root -p
 CREATE DATABASE test;
 SHOW DATABASES; #verification
+DROP DATABASE 'nom_BD'; #supprimer si besoin
 ```
 
 ## Creation  d'un seul utilisateur générique pour Vault
@@ -25,16 +26,28 @@ GRANT CREATE USER, GRANT OPTION, SHOW DATABASES ON *.* TO 'vault'@'%'; #Donner l
 GRANT ALL PRIVILEGES ON test.* TO 'vault'@'%' WITH GRANT OPTION; #Donner les privilèges sur la base de données test
 FLUSH PRIVILEGES; # Appliquer les changements
 ```
+![alt text](images/photo_11.png)
+![alt text](images/photo_12.png)
 ```bash
 SELECT user, host FROM mysql.user; #verification des users creer et/ou presents
 SHOW GRANTS FOR 'vault'@'%'; #verification des privileges accorder a 'user'@'pwd'
 ```
+![user List](images/photo_12.png)
+
+```bash
+DROP USER 'vault'@'%'; # Supprimer un user 
+```
 
 ## Dans VAULT
+
 ```bash
 vault secrets enable database   # Pour activer
 vault secrets disable database  # Pour désactiver
 ```
+```bash
+vault secrets list # verifier secrets present
+```
+![Secrets List](images/photo_13.png)
 
 ### Config connecxion a MySQL
 ```bash
@@ -45,6 +58,7 @@ vault write database/config/test \
   username="vault" \
   password="vaultpass"
 ```
+![alt text](images/photo_14.png)
 
 ### Creation Role pour la rotation
 ```bash
@@ -54,35 +68,31 @@ vault write database/roles/test-database-role \
   default_ttl="1h" \
   max_ttl="24h"
 ```
+![alt text](images/photo_15.png)
 
 ```bash
 vault read database/roles/test-database-role # verification role
+```
+![role](images/photo_16.png)
+
+```bash
 vault read database/creds/test-database-role # creation credential pour connexion
 ```
-
-### Sortie attendue
-<!-- 
-lease_id            database/creds/test-database-role/some-id
-lease_duration      1h
-lease_renewable     true
-username            v-token-test-datab-something
-password            somethingSecure 
--->
+![Credentials](images/photo_17.png)
 
 
 ### Depuis une machine ou conteneur avec mysql-client 
 ```bash
 kubectl run mysql-client --rm -it --image=mysql:latest --restart=Never -- /bin/sh # creation conteneur avec mysql-client pour test connexion a la BD
 ```
+![alt text](images/photo_18.png)
+
 ```bash
-# Etablir connexion a la bd depuis le conteneur avec les credentials generes par VAULT
+# Etablir connexion a la bd depuis le conteneur avec les credentials fournis par VAULT
 mysql -u v-token-test-datab-xxxxx -p -h 192.168.56.3
 ```
-<!-- 
-password           5mf97WQpKQ5ylsq8d-UW
-username           v-token-test-datab-H1aWbtmcADEAv 
--->
-puis entre le mot de passe ci-dessus donne par VAULT
+Puis entre le mot de passe donne par VAULT
+![connecxion](images/photo_19.png)
 
 ### Renouveler
 ```bash
@@ -91,4 +101,11 @@ vault lease renew database/creds/test-database-role/@lease_ID
 ### Révoquer
 ```bash
 vault lease revoke database/creds/test-database-role/@lease_ID
+```
+### Supprimer manuellement tout les utilisateurs creer dynamiquement 
+```bash
+# Liste tout les user puis tapez les commandes qui seront donner
+SELECT CONCAT("DROP USER '", user, "'@'", host, "';") 
+FROM mysql.user 
+WHERE user LIKE 'v-token%';
 ```
