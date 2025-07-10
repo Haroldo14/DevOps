@@ -1,0 +1,53 @@
+[2025-07-10_22-22-33] Lancement de la sauvegarde 
+Source: 
+cp: cannot stat '': No such file or directory
+Erreur lors de la sauvegarde !
+-----------------------------
+[2025-07-10_22-24-56] Lancement de la sauvegarde 
+Source: 
+cp: cannot stat '': No such file or directory
+Erreur lors de la sauvegarde !
+-----------------------------
+[2025-07-10_22-27-29] Lancement de la sauvegarde 
+Source: /c/Users/Haroldopc/Project_DevOps/devops-homelab
+-----------------------------
+[2025-07-10_22-29-30] Lancement de la sauvegarde 
+Source: /c/Users/Haroldopc/Project_DevOps/devops-homelab
+Destination: /c/Backups/2025-07-10_22-29-30
+Sauvegarde reussie en -1752182970 secondes.
+-----------------------------
+[2025-07-10_22-34-12] Lancement de la sauvegarde 
+Source: /c/Users/Haroldopc/Project_DevOps/devops-homelab
+Destination: /h/Backups/2025-07-10_22-34-12
+Sauvegarde reussie en -1752183252 secondes.
+-----------------------------
+[2025-07-10_22-37-07] Lancement de la sauvegarde 
+Source: /c/Users/Haroldopc/Project_DevOps/devops-homelab
+Destination: /h/Backups/2025-07-10_22-37-07
+Sauvegarde reussie en -1752183427 secondes.
+-----------------------------
+[2025-07-10_22-39-36] Lancement de la sauvegarde 
+Source: /c/Users/Haroldopc/Project_DevOps/devops-homelab
+Destination: /h/Backups/2025-07-10_22-39-36
+Sauvegarde reussie en -1752183576 secondes.
+-----------------------------
+[2025-07-10_22-40-24] Lancement de la sauvegarde 
+Source: /c/Users/Haroldopc/Project_DevOps/devops-homelab
+Destination: /h/Backups/2025-07-10_22-40-24
+Sauvegarde reussie en -1752183624 secondes.
+-----------------------------
+[2025-07-10_22-42-55] Lancement de la sauvegarde 
+Source: /c/Users/Haroldopc/Project_DevOps/devops-homelab
+Destination: /h/Backups/2025-07-10_22-42-55
+Sauvegarde reussie en 0 secondes.
+-----------------------------
+[2025-07-10_22-43-53] Lancement de la sauvegarde 
+Source: /c/Users/Haroldopc/Project_DevOps/devops-homelab
+Destination: /h/Backups/2025-07-10_22-43-53
+Sauvegarde reussie en 0 secondes.
+-----------------------------
+[2025-07-10_23-02-51] Lancement de la sauvegarde 
+Source: /c/Users/Haroldopc/Project_DevOps/devops-homelab
+Destination: /h/Backups/2025-07-10_23-02-51
+Sauvegarde reussie en 0 secondes.
+-----------------------------
