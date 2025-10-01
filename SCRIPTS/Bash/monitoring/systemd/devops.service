@@ -1,0 +1,9 @@
+[Unit]
+Description=DevOps Health Summary
+
+[Service]
+Type=oneshot
+WorkingDirectory=/opt/devops-monitoring
+EnvironmentFile=/opt/devops-monitoring/config/.env
+ExecStart=/usr/bin/bash /opt/devops-monitoring/scripts/health_summary.sh
+

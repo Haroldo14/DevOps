@@ -1,0 +1,7 @@
+# Copier en .env et sourcer avant exécution (export $(grep -v ^# .env | xargs))
+WEBHOOK_URL=https://hooks.slack.com/services/XXX/YYY/ZZZ
+CPU_THRESHOLD=85
+MEM_THRESHOLD=85
+DISK_THRESHOLD=85
+PORTS=22,80,443
+
